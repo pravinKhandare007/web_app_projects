@@ -21,17 +21,13 @@ public class TicketController {
 	public String getAlltickets(Model model){
 		List<Ticket> tickets = ticketService.getAllTickets();
 		model.addAttribute("list",tickets);
-		return "htmlfile_1";
+		return "mainpage";
 	}
 	
 	@GetMapping("tickettrckr/newTicket")
 	public String newTicket(Model model) {
 		Ticket newTicket = new Ticket();
-		model.addAttribute("newicket",newTicket);
+		model.addAttribute("newticket",newTicket);
 		return "creation of ticket html file";
-		
-		
-	@PostMapping()
 	}
-	
 }
