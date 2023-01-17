@@ -18,23 +18,23 @@ public class TicketController {
 	@Autowired
 	TicketServiceImpl ticketService;
 	
-	@GetMapping("tickettrckr/tickets")
+	@GetMapping("/tickets")
 	public String getAlltickets(Model model){
 		List<Ticket> tickets = ticketService.getAllTickets();
 		model.addAttribute("list",tickets);
 		return "employee";
 	}
 	
-	@GetMapping("tickettrckr/tickettrckr/newTicket")
+	@GetMapping("/newTicket")
 	public String newTicket(Model model) {
 		Ticket newTicket = new Ticket();
 		model.addAttribute("newticket",newTicket);
-		return "create_employee";
+		return "NewTicket";
 	}
 	
-	@PostMapping("tickettrckr/tickets")
+	@PostMapping("/saveTickets")
 	public String addTicket(@ModelAttribute(name = "newticket") Ticket tick) {
 		ticketService.saveOrUpdateTicket(tick);
-		return "redirect:/tickettrckr/tickets";
+		return "redirect:/tickets";
 	}
 }

@@ -10,19 +10,46 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "ticket")
+@Table(name = "tickets")
 public class Ticket {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int number;
+	@Column(name = "ticket_id")
+	private int id;
 	
-	@Column(name = "title")
+	@Column(name = "ticket_title")
 	private String title;
 	
-	@Column(name = "discription")
+	@Column(name = "ticket_discription")
 	private String discription;
 	
-	@Column(name = "date")
+	@Column(name = "ticket_dates")
 	private String createdon;
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDiscription() {
+		return discription;
+	}
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+	public String getCreatedon() {
+		return createdon;
+	}
+
+	public void setCreatedon(String createdon) {
+		this.createdon = createdon;
+	}
+
 }
