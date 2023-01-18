@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.greatlearning.tickettrckr.model.Ticket;
 import com.greatlearning.tickettrckr.service.TicketServiceImpl;
 
@@ -35,9 +35,29 @@ public class TicketController {
 		return "createTicket";
 	}
 	
+	@GetMapping("/ticket/edit/{id}")
+	public String editTicket(Model model,@PathVariable("id") Integer id){
+		Ticket tck = ticketService.getTicketByNumber(id);
+		model.addAttribute("ticket",tck);
+		return "edit_ticket";
+	
+	}
+	
 	@PostMapping("/saveTickets")
 	public String addTicket(@ModelAttribute(name = "newticket") Ticket tick) {
 		ticketService.saveOrUpdateTicket(tick);
+		return "redirect:/tickets";
+	}
+	
+	@PostMapping("/tickets/{id}")
+	public String updateTicket(@ModelAttribute(name = "ticket") Ticket tck, @PathVariable("id") Integer id) {
+		Ticket existingTicket= ticketService.getTicketByNumber(id);
+		if(existingTicket.getId()== tck.getId()) {
+			existingTicket.setTitle(tck.getTitle());
+			existingTicket.setDiscription(tck.getDiscription());
+			existingTicket.setCreatedon(tck.getCreatedon());
+		}
+		ticketService.saveOrUpdateTicket(existingTicket);
 		return "redirect:/tickets";
 	}
 }
