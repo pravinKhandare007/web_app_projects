@@ -17,7 +17,7 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ticket_id")
-	private Integer id;
+	private int id;
 	
 	@Column(name = "ticket_title")
 	private String title;
