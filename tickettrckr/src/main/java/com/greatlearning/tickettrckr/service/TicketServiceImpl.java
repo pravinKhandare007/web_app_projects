@@ -27,14 +27,14 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public void deleteTicket(int number) {
-		Ticket delTckt = getTicketByNumber(number);
+	public void deleteTicketById(int number) {
+		Ticket delTckt = getTicketById(number);
 		repository.delete(delTckt);
 		
 	}
 
 	@Override
-	public Ticket getTicketByNumber(int number) {
+	public Ticket getTicketById(int number) {
 		Ticket tckt = repository.findById(number).get();
 		return tckt;
 	}

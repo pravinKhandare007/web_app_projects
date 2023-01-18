@@ -37,10 +37,15 @@ public class TicketController {
 	
 	@GetMapping("/ticket/edit/{id}")
 	public String editTicket(Model model,@PathVariable("id") Integer id){
-		Ticket tck = ticketService.getTicketByNumber(id);
+		Ticket tck = ticketService.getTicketById(id);
 		model.addAttribute("ticket",tck);
 		return "edit_ticket";
+	}
 	
+	@GetMapping("/ticket/delete/{id}")
+	public String deleteTicket(@PathVariable("id") Integer id) {
+		ticketService.deleteTicketById(id);
+		return "redirect:/tickets";
 	}
 	
 	@PostMapping("/saveTickets")
@@ -51,7 +56,7 @@ public class TicketController {
 	
 	@PostMapping("/tickets/{id}")
 	public String updateTicket(@ModelAttribute(name = "ticket") Ticket tck, @PathVariable("id") Integer id) {
-		Ticket existingTicket= ticketService.getTicketByNumber(id);
+		Ticket existingTicket= ticketService.getTicketById(id);
 		if(existingTicket.getId()== tck.getId()) {
 			existingTicket.setTitle(tck.getTitle());
 			existingTicket.setDiscription(tck.getDiscription());
