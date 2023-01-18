@@ -13,11 +13,11 @@ import javax.persistence.Table;
 @Table(name = "tickets")
 public class Ticket {
 	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ticket_id")
-	private int id;
+	private Integer id;
 	
 	@Column(name = "ticket_title")
 	private String title;
@@ -27,6 +27,15 @@ public class Ticket {
 	
 	@Column(name = "ticket_dates")
 	private String createdon;
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public String getTitle() {
 		return title;

@@ -21,15 +21,18 @@ public class TicketController {
 	@GetMapping("/tickets")
 	public String getAlltickets(Model model){
 		List<Ticket> tickets = ticketService.getAllTickets();
+//		for(Ticket tck: tickets) {
+//			System.out.println(tck.id);
+//		}
 		model.addAttribute("list",tickets);
-		return "employee";
+		return "ticket";
 	}
 	
 	@GetMapping("/newTicket")
 	public String newTicket(Model model) {
 		Ticket newTicket = new Ticket();
 		model.addAttribute("newticket",newTicket);
-		return "NewTicket";
+		return "createTicket";
 	}
 	
 	@PostMapping("/saveTickets")
