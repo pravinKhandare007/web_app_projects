@@ -17,13 +17,16 @@
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<!-- Brand -->
-		<a class="navbar-brand" href="#">ticket tracker</a>
+		<a class="navbar-brand" href="#">Ticket Tracker Application</a>
 
 		<!-- Toggler/collapsibe Button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		
+		<a th:href="@{/newTicket}" class="btn btn-primary ">
+					new ticket</a>
 
 	</nav>
 	<div class="container">
