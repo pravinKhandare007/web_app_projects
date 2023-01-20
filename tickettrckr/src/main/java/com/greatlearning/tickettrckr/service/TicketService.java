@@ -9,4 +9,5 @@ public interface TicketService {
 	public void saveOrUpdateTicket(Ticket tckt);
 	public void deleteTicketById(int number);
 	public Ticket getTicketById(int number);
+	public List<Ticket> getTicketByKeyword(String keyword);
 }
