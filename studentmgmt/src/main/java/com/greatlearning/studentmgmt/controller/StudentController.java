@@ -1,4 +1,4 @@
-package com.greatlearning.studentmgmt.controller;
+ package com.greatlearning.studentmgmt.controller;
 
 import java.util.List;
 
@@ -46,5 +46,19 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/save")
-	public 
-}
+	public String save(@RequestParam(name = "id") int id,@RequestParam(name = "firstName") String firstName,@RequestParam(name = "lastName") String lastName,@RequestParam(name = "course") String course,@RequestParam(name = "country") String country) {
+		Student student;
+		if(id == 0) {
+			 student = new Student();
+		}else {
+			student = service.getStudentById(id);
+		}
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
+		student.setCourse(course);
+		student.setCountry(country);
+		service.addOrUpdateStudent(student);
+		
+		return "redirct:/student/list";
+	}
+} 
