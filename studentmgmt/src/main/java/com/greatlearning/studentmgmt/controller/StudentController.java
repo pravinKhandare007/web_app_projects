@@ -21,33 +21,34 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String viewAllStudent(Model model) {
 		List<Student> students = service.getAllStudents();
-		model.addAttribute("student_lits",students);
+		model.addAttribute("Students",students);
 		return "list-student";
 	}
 	
 	@RequestMapping("/showFormForAdd")
 	public String  showFormForAdd(Model model) {
 		Student addStudent = new Student();
-		model.addAttribute("student",  addStudent);
-		return "save-student";
+		model.addAttribute("Student",  addStudent);
+		return "save-stud";
 	}
 	
 	@RequestMapping("/showFormForUpdate")
 	public String showFormForUpdate(Model model,@RequestParam(name = "studentId") int id) {
 		Student student = service.getStudentById(id);
-		model.addAttribute("student",student);
-		return "save-student";
+		model.addAttribute("Student",student);
+		return "save-stud";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(name = "studentId") int id) {
 		service.deleteByStudentId(id);
-		return "redirect:/student/list-student";
+		return "redirect:/student/list";
 	}
 	
 	@RequestMapping("/save")
 	public String save(@RequestParam(name = "id") int id,@RequestParam(name = "firstName") String firstName,@RequestParam(name = "lastName") String lastName,@RequestParam(name = "course") String course,@RequestParam(name = "country") String country) {
 		Student student;
+		System.out.println(id);
 		if(id == 0) {
 			 student = new Student();
 		}else {
@@ -59,6 +60,6 @@ public class StudentController {
 		student.setCountry(country);
 		service.addOrUpdateStudent(student);
 		
-		return "redirct:/student/list";
+		return "redirect:/student/list";
 	}
 } 
